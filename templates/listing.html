@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Host</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #fafafa;
+        color: #333;
+      }
+
+      .container {
+        max-width: 960px;
+        margin: auto;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .listing {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .listing li {
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+        width: calc(50% - 5px);
+        margin: 0;
+      }
+
+      .listing li:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .listing li a {
+        display: block;
+        padding: 15px;
+        text-decoration: none;
+        color: #0275d8;
+        transition: background-color 0.3s ease;
+      }
+
+      .listing li a:hover {
+        background-color: #f8f8f8;
+      }
+
+      .back-link {
+        display: block;
+        margin-top: 20px;
+        color: #0275d8;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .back-link:hover {
+        color: #025aa5;
+      }
+
+      @media (max-width: 600px) {
+        .listing li {
+          width: 100%;
+        }
+      }
+      .icon {
+        margin-right: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Directory Listing for {{path}}</h1>
+      <ul class="listing">
+        {{#each files}}
+        <li>
+          <a href="{{this.url}}">
+            <span class="icon"
+              >{{#if (eq this.type "directory")}}📁{{else}}📄{{/if}}</span
+            >
+            {{this.name}}
+          </a>
+        </li>
+        {{/each}}
+      </ul>
+      <a href="{{parentUrl}}" class="back-link">Go Back</a>
+    </div>
+  </body>
+</html>
